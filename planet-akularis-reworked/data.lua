@@ -21,17 +21,43 @@ function MapGen_Akularis()
         ["water"] = { frequency = 0, size = 0, richness = 0 },
     }
 
-    map_gen_setting.autoplace_settings["entity"] =  { 
+    -- Disable entity autoplace for resources that shouldn't spawn naturally
+    -- This prevents invalid noise expressions with infinite offset_x values
+    map_gen_setting.autoplace_settings["entity"] =  {
         settings =
         {
-            ["iron-ore"] = {},
-            ["copper-ore"] = {},
-            ["stone"] = {},
-            ["coal"] = {},
-            ["crude-oil"] = {},
-            ["fish"] = {},
+            ["iron-ore"] = { frequency = "none", size = "none", richness = "none" },
+            ["copper-ore"] = { frequency = "none", size = "none", richness = "none" },
+            ["stone"] = { frequency = "none", size = "none", richness = "none" },
+            ["coal"] = { frequency = "none", size = "none", richness = "none" },
+            ["crude-oil"] = {},  -- Keep crude-oil enabled as autoplace_controls sets it to frequency = 4
+            ["fish"] = { frequency = "none", size = "none", richness = "none" },
+
+            -- Disable problematic entity types
+            ["tree-palm-a"] = { frequency = "none", size = "none", richness = "none" },
+            ["tree-palm-b"] = { frequency = "none", size = "none", richness = "none" },
         }
     }
+
+    -- Configure decorative settings to prevent noise expression errors
+    -- Explicitly disable volcanic decoratives that may have invalid octave values
+    map_gen_setting.autoplace_settings["decorative"] = {
+        settings = {
+            -- Disable volcanic decoratives that cause octave errors
+            ["medium-rock-volcanic"] = { frequency = "none", size = "none", richness = "none" },
+            ["small-rock-volcanic"] = { frequency = "none", size = "none", richness = "none" },
+            ["tiny-rock-volcanic"] = { frequency = "none", size = "none", richness = "none" },
+        }
+    }
+
+    -- Disable water tiles since water frequency is set to 0
+    -- This prevents invalid noise expressions with infinite offset_x values
+    map_gen_setting.autoplace_settings["tile"] = {
+        settings = {
+            ["deepwater"] = { frequency = "none", size = "none", richness = "none" },
+        }
+    }
+
     return map_gen_setting
 end
 -- increse stone patch size in start area
@@ -63,10 +89,10 @@ local akularis=
     type = "planet",
     name = "akularis", 
     solar_power_in_space = nauvis.solar_power_in_space,
-    icon = "__planet-akularis-reworked__/graphics/planet-akularis.png",
+    icon = "__planet-akularis-reworked__/graphics/planet-akularis-reworked.png",
     icon_size = 512,
     label_orientation = 0.55,
-    starmap_icon = "__planet-akularis-reworked__/graphics/planet-akularis.png",
+    starmap_icon = "__planet-akularis-reworked__/graphics/planet-akularis-reworked.png",
     starmap_icon_size = 512,
     magnitude = nauvis.magnitude,
     subgroup = "planets",
@@ -122,7 +148,7 @@ data:extend{akularis_connection2}
 data:extend {{
     type = "technology",
     name = "planet-discovery-akularis",
-    icons = PlanetsLib.technology_icon_constant_planet("__planet-akularis-reworked__/graphics/planet-akularis.png", 512),
+    icons = PlanetsLib.technology_icon_constant_planet("__planet-akularis-reworked__/graphics/planet-akularis-reworked.png", 512),
     icon_size = 512,
     essential = true,
     localised_description = {"space-location-description.akularis"},
