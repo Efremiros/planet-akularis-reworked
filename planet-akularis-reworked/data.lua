@@ -30,9 +30,6 @@ function MapGen_Akularis()
             ["coal"] = {},
             ["crude-oil"] = {},
             ["fish"] = {},
-            ["big-sand-rock"] = {},
-            ["huge-rock"] = {},
-            ["big-rock"] = {},
         }
     }
     return map_gen_setting
@@ -66,10 +63,10 @@ local akularis=
     type = "planet",
     name = "akularis", 
     solar_power_in_space = nauvis.solar_power_in_space,
-    icon = "__planet-akularis__/graphics/planet-akularis.png",
+    icon = "__planet-akularis-reworked__/graphics/planet-akularis.png",
     icon_size = 512,
     label_orientation = 0.55,
-    starmap_icon = "__planet-akularis__/graphics/planet-akularis.png",
+    starmap_icon = "__planet-akularis-reworked__/graphics/planet-akularis.png",
     starmap_icon_size = 512,
     magnitude = nauvis.magnitude,
     subgroup = "planets",
@@ -125,7 +122,7 @@ data:extend{akularis_connection2}
 data:extend {{
     type = "technology",
     name = "planet-discovery-akularis",
-    icons = PlanetsLib.technology_icon_constant_planet("__planet-akularis__/graphics/planet-akularis.png", 512),
+    icons = PlanetsLib.technology_icon_constant_planet("__planet-akularis-reworked__/graphics/planet-akularis.png", 512),
     icon_size = 512,
     essential = true,
     localised_description = {"space-location-description.akularis"},
@@ -288,4 +285,4 @@ data:extend {
 }
 
 
-APS.add_planet{name = "akularis", filename = "__planet-akularis__/akularis.lua", technology = "planet-discovery-akularis"}
+APS.add_planet{name = "akularis", filename = "__planet-akularis-reworked__/akularis.lua", technology = "planet-discovery-akularis"}

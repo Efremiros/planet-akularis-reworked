@@ -1,0 +1,13 @@
+{
+    "name": "planet-akularis-reworked",
+    "version": "1.0.0",
+    "title": "Planet Akularis REWORKED",
+    "author": "Efremiros",
+    "factorio_version": "2.0",
+    "dependencies": [
+      "space-age",
+      "any-planet-start",
+      "PlanetsLib"
+    ],
+    "description": "This mod adds in a new starter planet Akularis"
+  }
